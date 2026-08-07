@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f3f1eb">
+  <meta name="description" content="Концепт нового интерфейса автошколы КБКС.">
+  <title>КБКС Автошкола — маршрут к водительскому удостоверению</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержанию</a>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="КБКС Автошкола — наверх">
+        <span class="brand-mark">КБКС</span>
+        <span class="brand-name"><b>Автошкола</b><small>Направление колледжа</small></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Основная навигация">
+        <a href="#programs">Программы</a>
+        <a href="#route">Как проходит обучение</a>
+        <a href="#trust">Документы</a>
+      </nav>
+
+      <a class="header-cta" href="#contact">Получить консультацию <span>↗</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu>
+        <span></span><span></span><b class="sr-only">Открыть меню</b>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" data-mobile-nav>
+      <a href="#programs">Программы</a><a href="#route">Как проходит обучение</a><a href="#trust">Документы</a><a href="#contact">Консультация</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <div class="hero-kicker" data-intro><span>Официальный раздел КБКС</span><i></i><b>2026</b></div>
+          <h1 id="hero-title" data-intro>Сначала маршрут.<br><em>Потом — дорога.</em></h1>
+          <p class="hero-lead" data-intro>Всё, что нужно до первого занятия: программа, порядок обучения, документы и прямой следующий шаг.</p>
+
+          <div class="hero-actions" data-intro>
+            <a class="button button-dark" href="#programs">Выбрать программу <span>→</span></a>
+            <a class="text-action" href="#route"><i>↓</i> Как всё устроено</a>
+          </div>
+
+          <div class="hero-proof" data-intro>
+            <div><span class="proof-dot proof-dot--ok"></span><p><b>Категория B</b><small>Программа опубликована</small></p></div>
+            <div><span class="proof-dot"></span><p><b>КБКС</b><small>Официальное направление</small></p></div>
+          </div>
+        </div>
+
+        <div class="route-stage" data-route-stage aria-label="Интерактивная схема маршрута обучения">
+          <div class="stage-label"><span>Ваш маршрут</span><b>01—04</b></div>
+          <svg class="route-map" viewBox="0 0 720 610" role="img" aria-label="Маршрут от выбора программы до начала обучения">
+            <path class="terrain terrain-a" d="M-40 403C95 309 172 461 279 365s176-218 276-118 133 67 207-58"/>
+            <path class="terrain terrain-b" d="M-80 463C87 360 164 516 298 408s165-167 273-87 129 51 203-24"/>
+            <path class="route-track" d="M34 496C140 433 192 493 271 423s105-236 220-193 108 152 198 65"/>
+            <path class="route-progress" data-route-path d="M34 496C140 433 192 493 271 423s105-236 220-193 108 152 198 65"/>
+            <circle class="route-node" cx="34" cy="496" r="9"/><circle class="route-node" cx="271" cy="423" r="8"/><circle class="route-node" cx="491" cy="230" r="8"/><circle class="route-node route-node--last" cx="689" cy="295" r="11"/>
+          </svg>
+
+          <article class="map-card map-card--start" data-float-card>
+            <span>01</span><div><small>Старт</small><b>Выбрать программу</b></div>
+          </article>
+          <article class="map-card map-card--docs" data-float-card>
+            <span>02</span><div><small>Подготовка</small><b>Собрать документы</b></div>
+          </article>
+          <article class="map-card map-card--go" data-float-card>
+            <span class="signal"><i></i></span><div><small>Следующий шаг</small><b>Консультация</b></div><strong>→</strong>
+          </article>
+
+          <div class="car-symbol" data-car aria-hidden="true">
+            <svg viewBox="0 0 150 70"><path d="M19 44 31 24c4-7 10-11 18-13l45-7c9-2 16 2 22 9l12 15 13 3c5 1 8 5 8 10v8H19Z"/><path d="M42 23h64L96 12c-2-3-6-4-10-3l-32 5c-5 1-9 4-12 9Z"/><circle cx="49" cy="50" r="10"/><circle cx="119" cy="50" r="10"/></svg>
+          </div>
+
+          <div class="stage-caption"><i></i><span>Схема показывает порядок действий, а не географический маршрут</span></div>
+        </div>
+      </div>
+      <div class="hero-index" aria-hidden="true"><span>01</span><i></i><b>КБКС / АВТОШКОЛА</b></div>
+    </section>
+
+    <section class="programs section" id="programs" aria-labelledby="programs-title">
+      <div class="shell">
+        <header class="section-head" data-reveal>
+          <div><span class="section-kicker">Программы</span><h2 id="programs-title">Только то, что<br>можно подтвердить.</h2></div>
+          <p>Никаких придуманных цен, сроков или обещаний. Сначала факты — затем решение.</p>
+        </header>
+
+        <div class="program-grid">
+          <article class="program-card program-card--active" data-reveal>
+            <div class="program-top"><span class="program-code">B</span><span class="pill pill-ok"><i></i>Документ найден</span></div>
+            <div class="program-copy"><span>01</span><h3>Категория B</h3><p>Рабочая программа опубликована на действующем сайте КБКС.</p></div>
+            <dl><div><dt>Стоимость</dt><dd>Уточняется</dd></div><div><dt>Ближайший набор</dt><dd>Уточняется</dd></div></dl>
+            <a href="https://kb-ks.ru/2024/12/24/%D0%B0%D0%B2%D1%82%D0%BE%D1%88%D0%BA%D0%BE%D0%BB%D0%B0/" target="_blank" rel="noopener noreferrer">Открыть опубликованный материал <span>↗</span></a>
+          </article>
+
+          <article class="program-card program-card--pending" data-reveal>
+            <div class="program-top"><span class="program-code">C</span><span class="pill">Требует проверки</span></div>
+            <div class="program-copy"><span>02</span><h3>Категория C</h3><p>Не публикуем как действующую, пока условия не подтверждены ответственным сотрудником.</p></div>
+            <div class="pending-line"><span></span><b>Данные ожидают подтверждения</b></div>
+          </article>
+
+          <article class="program-card program-card--pending" data-reveal>
+            <div class="program-top"><span class="program-code">CE</span><span class="pill">Требует проверки</span></div>
+            <div class="program-copy"><span>03</span><h3>Категория CE</h3><p>Карточка готова к наполнению после проверки программы и условий.</p></div>
+            <div class="pending-line"><span></span><b>Данные ожидают подтверждения</b></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="route-section section" id="route" aria-labelledby="route-title">
+      <div class="shell route-layout">
+        <div class="route-heading" data-reveal>
+          <span class="section-kicker section-kicker--light">Порядок обучения</span>
+          <h2 id="route-title">Четыре шага.<br><em>Без цифрового лабиринта.</em></h2>
+          <p>Мы показываем только реальный путь обращения — без выдуманного личного кабинета и функций, которых ещё нет.</p>
+        </div>
+        <ol class="steps">
+          <li data-step><span>01</span><div><b>Консультация</b><p>Уточнить программу и задать вопросы ответственному сотруднику.</p></div><i>↗</i></li>
+          <li data-step><span>02</span><div><b>Условия</b><p>Получить подтверждённые требования и порядок обучения.</p></div><i>↗</i></li>
+          <li data-step><span>03</span><div><b>Документы</b><p>Подготовить перечень по действующим требованиям.</p></div><i>↗</i></li>
+          <li data-step><span>04</span><div><b>Обучение</b><p>Перейти к обучению по утверждённой программе.</p></div><i>↗</i></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="trust section" id="trust" aria-labelledby="trust-title">
+      <div class="shell trust-grid">
+        <header data-reveal><span class="section-kicker">Центр доверия</span><h2 id="trust-title">Документы<br>на виду.</h2><p>Официальная принадлежность и доказательные материалы вынесены из подвала страницы в самостоятельный блок.</p></header>
+        <div class="doc-stack">
+          <a class="doc-row" data-reveal href="https://kb-ks.ru/2024/12/24/%D0%B0%D0%B2%D1%82%D0%BE%D1%88%D0%BA%D0%BE%D0%BB%D0%B0/" target="_blank" rel="noopener noreferrer"><span>01</span><div><b>Рабочая программа категории B</b><small>Опубликованный материал</small></div><i>↗</i></a>
+          <article class="doc-row" data-reveal><span>02</span><div><b>Лицензия и область действия</b><small>Реквизиты необходимо подтвердить</small></div><em>Ожидается</em></article>
+          <article class="identity-row" data-reveal><span class="identity-mark">КБКС</span><div><b>Кабардино-Балкарский колледж «Строитель»</b><small>Автошкола остаётся частью официального сайта колледжа.</small></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact" aria-labelledby="contact-title">
+      <div class="shell contact-panel" data-reveal>
+        <div><span class="section-kicker section-kicker--light">Следующий шаг</span><h2 id="contact-title">Один вопрос —<br>один понятный ответ.</h2></div>
+        <div class="contact-action"><p>Форма появится после подключения реального канала обработки заявок. Пока не имитируем отправку данных.</p><a class="button button-light" href="https://kb-ks.ru/" target="_blank" rel="noopener noreferrer">Перейти на сайт КБКС <span>↗</span></a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="shell"><span>КБКС / АВТОШКОЛА</span><p>Дизайн-прототип. Данные требуют подтверждения перед публикацией.</p><a href="#top">Наверх ↑</a></div></footer>
+</body>
+</html>
