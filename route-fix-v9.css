@@ -1,0 +1,48 @@
+/* V9 — fix the empty mobile route block by making the sticky scene's containing block own the scroll distance. */
+
+/* The section itself must not manufacture blank space. */
+.route-experience{
+  min-height:0 !important;
+}
+
+/* The sticky element is constrained by .route-shell, so the shell — not the section — owns the scene length. */
+.route-shell{
+  min-height:210svh;
+}
+
+.route-sticky-wrap{
+  position:sticky;
+  top:calc(var(--header-height) + .7rem);
+  align-self:start;
+}
+
+/* Keep the next section close to the end of the animation instead of leaving a dead tail. */
+.route-experience{
+  padding-bottom:1.75rem;
+}
+
+@media (min-width:52.5rem){
+  .route-experience{
+    min-height:0 !important;
+    padding-bottom:3rem;
+  }
+
+  .route-shell{
+    min-height:220vh;
+  }
+
+  .route-sticky-wrap{
+    top:calc(var(--header-height) + 1.4rem);
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .route-shell{
+    min-height:auto;
+  }
+
+  .route-sticky-wrap{
+    position:relative;
+    top:auto;
+  }
+}
