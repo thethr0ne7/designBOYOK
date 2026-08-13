@@ -37,9 +37,9 @@ a svg,button svg,.route-node>svg:not(.route-check){fill:none;stroke:currentColor
 .skip-link{position:fixed;z-index:1000;top:1rem;left:1rem;padding:.75rem 1rem;border-radius:.7rem;color:#fff;background:var(--blue);font-weight:700;transform:translateY(-180%);transition:transform .25s var(--ease)}
 .skip-link:focus{transform:translateY(0)}
 
-/* Thematic road layer. It must sit ABOVE body paint and BELOW content. */
-.road-pattern{position:fixed;z-index:0;inset:-4rem -3rem 0;width:calc(100% + 6rem);height:calc(100% + 8rem);color:var(--blue);pointer-events:none;opacity:.12;transform:translate3d(0,0,0) scale(1.05);transform-origin:center top;transition:transform .18s linear;will-change:transform}
-.road-pattern .pattern-line{opacity:.78}.road-pattern .pattern-fill{opacity:.58}
+/* Thematic road layer. Stronger on mobile, still decorative rather than informational. */
+.road-pattern{position:fixed;z-index:0;inset:-4rem -3rem 0;width:calc(100% + 6rem);height:calc(100% + 8rem);color:var(--blue);pointer-events:none;opacity:.19;transform:translate3d(0,0,0) scale(1.08);transform-origin:center top;transition:transform .18s linear;will-change:transform}
+.road-pattern .pattern-line{opacity:.92}.road-pattern .pattern-fill{opacity:.72}
 main,.site-footer{position:relative;z-index:1}
 
 .site-header{position:sticky;z-index:100;top:0;border-bottom:1px solid rgba(183,195,212,.68);background:rgba(255,255,255,.94);backdrop-filter:saturate(120%) blur(8px);transition:box-shadow .26s ease}
@@ -57,7 +57,7 @@ main,.site-footer{position:relative;z-index:1}
 .mobile-nav.is-open{opacity:1;visibility:visible;transform:none;transition:opacity .25s var(--ease),transform .25s var(--ease),visibility 0ms step-start}
 .mobile-nav a{display:flex;min-height:3.25rem;align-items:center;border-bottom:1px solid var(--line);font-size:.93rem;font-weight:700}
 
-.hero{position:relative;padding:3.2rem 0 4.4rem;border-bottom:1px solid rgba(174,187,208,.62);background:linear-gradient(180deg,rgba(255,255,255,.77),rgba(246,248,252,.48))}
+.hero{position:relative;padding:3.2rem 0 4.4rem;border-bottom:1px solid rgba(174,187,208,.62);background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(246,248,252,.28))}
 .hero-grid{display:grid;gap:2.35rem}
 .hero-copy{max-width:42rem}
 .eyebrow,.kicker{margin:0 0 .75rem;color:var(--blue);font-size:.76rem;font-weight:800;letter-spacing:.02em;text-transform:uppercase}
@@ -81,7 +81,7 @@ main,.site-footer{position:relative;z-index:1}
 .section{position:relative;padding:4.5rem 0}
 .section-heading{display:grid;gap:1rem}.section h2,.documents-heading h2{max-width:12ch;font-size:clamp(2.15rem,10vw,3.2rem);line-height:.98}
 .section-heading>p,.documents-heading>p{max-width:35rem;margin:0;color:var(--muted);font-size:.96rem;line-height:1.6}
-.program-section{background:rgba(246,248,252,.52)}
+.program-section{background:rgba(246,248,252,.34)}
 .program-band{display:grid;gap:1.15rem;margin-top:2rem;padding:1.55rem 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line)}
 .program-letter{color:var(--blue);font-size:4.7rem;font-weight:800;line-height:.8;letter-spacing:-.06em}
 .program-status{display:flex;align-items:center;gap:.5rem;margin:0;color:var(--blue);font-size:.78rem;font-weight:800}
@@ -89,7 +89,7 @@ main,.site-footer{position:relative;z-index:1}
 .program-body>p:last-child{max-width:42rem;margin:.55rem 0 0;color:var(--muted);font-size:.94rem;line-height:1.58}
 .text-action{display:flex;min-height:3.2rem;align-items:center;justify-content:space-between;gap:1rem;padding-top:.75rem;border-top:1px solid var(--line);color:var(--blue);font-size:.88rem;font-weight:800}
 
-.route-experience{position:relative;min-height:285vh;padding:4.5rem 0 5rem;background:rgba(255,255,255,.66);border-top:1px solid rgba(174,187,208,.62);border-bottom:1px solid rgba(174,187,208,.62)}
+.route-experience{position:relative;min-height:285vh;padding:4.5rem 0 5rem;background:rgba(255,255,255,.44);border-top:1px solid rgba(174,187,208,.62);border-bottom:1px solid rgba(174,187,208,.62)}
 .route-shell{position:relative}
 .route-intro{max-width:38rem;margin-bottom:2rem}
 .route-intro h2{max-width:11ch;font-size:clamp(2.25rem,10.8vw,3.35rem);line-height:.97}
@@ -127,7 +127,7 @@ main,.site-footer{position:relative;z-index:1}
 .route-complete>span{display:grid;width:2rem;height:2rem;place-items:center;border:1px solid #9fd2b3;border-radius:50%;color:var(--success);background:#fff;font-weight:800}.route-complete strong{display:block;color:var(--success);font-size:.84rem}.route-complete p{margin:.08rem 0 0;color:#548165;font-size:.75rem}
 .route-card.is-complete .route-complete{opacity:1;transform:none}.route-card.is-complete .route-particle{opacity:0}
 
-.documents-section{background:rgba(246,248,252,.5)}
+.documents-section{background:rgba(246,248,252,.32)}
 .documents-layout{display:grid;gap:2rem}.documents-heading p.kicker{margin-bottom:.75rem}.documents-heading>p:last-child{margin-top:1rem}
 .document-list{display:grid}
 .document-row{display:flex;min-height:5.4rem;align-items:center;justify-content:space-between;gap:1rem;padding:1.05rem 0;border-top:1px solid var(--line)}
@@ -155,6 +155,7 @@ main,.site-footer{position:relative;z-index:1}
 
 @media(min-width:52.5rem){
   :root{--header-height:4.75rem}
+  .road-pattern{opacity:.145}
   .header-row{grid-template-columns:1fr auto 1fr;gap:2rem}
   .desktop-nav{display:flex;align-items:center;gap:2rem}.desktop-nav a{display:inline-flex;min-height:2.75rem;align-items:center;color:var(--muted);font-size:.86rem;font-weight:700}
   .header-action{display:inline-flex;min-height:3rem;align-items:center;justify-self:end;gap:.5rem;padding:0 1rem;border:1px solid var(--line);border-radius:.7rem;background:#fff;font-size:.84rem;font-weight:800}
