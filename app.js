@@ -50,13 +50,14 @@
         entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
     reveals.forEach((element) => observer.observe(element));
   } else {
     reveals.forEach((element) => element.classList.add('is-visible'));
   }
 
   const routeExperience = document.querySelector('[data-route-experience]');
+  const routeIntro = routeExperience?.querySelector('.route-intro');
   const routeCard = document.querySelector('[data-route-card]');
   const routeSteps = [...document.querySelectorAll('[data-route-step]')];
   const routeLabel = document.querySelector('[data-route-label]');
@@ -65,18 +66,37 @@
   let rafId = null;
   let lastStep = -1;
   let lastProgress = '';
+  let enterTimer = null;
+
+  const triggerStepEntrance = (index) => {
+    if (reducedMotion.matches) return;
+    const step = routeSteps[index];
+    if (!step) return;
+
+    routeSteps.forEach((item) => item.classList.remove('is-entering'));
+    step.classList.remove('is-entering');
+    void step.offsetWidth;
+    step.classList.add('is-entering');
+
+    window.clearTimeout(enterTimer);
+    enterTimer = window.setTimeout(() => step.classList.remove('is-entering'), 760);
+  };
 
   const setRouteState = (progress, forceComplete = false) => {
     if (!routeCard || !routeSteps.length) return;
 
     const safeProgress = clamp(progress, 0, 1);
-    const progressPercent = `${(safeProgress * 100).toFixed(2)}%`;
+    const easedProgress = safeProgress < 0.5
+      ? 2 * safeProgress * safeProgress
+      : 1 - Math.pow(-2 * safeProgress + 2, 2) / 2;
+    const progressPercent = `${(easedProgress * 100).toFixed(2)}%`;
+
     if (progressPercent !== lastProgress) {
       routeCard.style.setProperty('--route-progress', progressPercent);
       lastProgress = progressPercent;
     }
 
-    const complete = forceComplete || safeProgress >= 0.985;
+    const complete = forceComplete || safeProgress >= 0.992;
     const activeIndex = complete
       ? routeSteps.length - 1
       : Math.min(routeSteps.length - 1, Math.floor(safeProgress * routeSteps.length));
@@ -90,10 +110,29 @@
 
     routeCard.classList.toggle('is-complete', complete);
 
-    if (routeLabel && activeIndex !== lastStep) {
-      routeLabel.textContent = complete ? '4 шага завершены' : `Шаг ${activeIndex + 1} из 4`;
+    if (activeIndex !== lastStep) {
+      if (!complete) triggerStepEntrance(activeIndex);
+      if (routeLabel) {
+        routeLabel.textContent = complete ? '4 шага завершены' : `Шаг ${activeIndex + 1} из 4`;
+      }
       lastStep = activeIndex;
     }
+  };
+
+  const getRouteProgress = () => {
+    if (!routeExperience) return 0;
+
+    const rect = routeExperience.getBoundingClientRect();
+    const sectionTop = window.scrollY + rect.top;
+    const headerHeight = header?.offsetHeight ?? 0;
+    const mobile = window.innerWidth < 840;
+    const introOffset = mobile ? (routeIntro?.offsetHeight ?? 0) + 22 : 0;
+
+    const start = sectionTop + introOffset - headerHeight - 8;
+    const end = sectionTop + routeExperience.offsetHeight - window.innerHeight + headerHeight;
+    const distance = Math.max(1, end - start);
+
+    return clamp((window.scrollY - start) / distance, 0, 1);
   };
 
   const updateRoute = () => {
@@ -104,17 +143,15 @@
       return;
     }
 
-    const rect = routeExperience.getBoundingClientRect();
-    const headerHeight = header?.offsetHeight ?? 0;
-    const scrollable = Math.max(1, routeExperience.offsetHeight - window.innerHeight);
-    const raw = (-rect.top + headerHeight + 12) / scrollable;
-    setRouteState(raw);
+    setRouteState(getRouteProgress());
   };
 
   const updatePattern = () => {
     if (!roadPattern || reducedMotion.matches) return;
-    const offset = clamp(window.scrollY * 0.018, 0, 24);
-    roadPattern.style.transform = `translate3d(0, ${offset}px, 0)`;
+
+    const y = clamp(window.scrollY * 0.035, 0, 54);
+    const x = Math.sin(window.scrollY / 680) * 8;
+    roadPattern.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(1.05)`;
   };
 
   const updateFrame = () => {
@@ -131,7 +168,10 @@
 
   window.addEventListener('scroll', requestFrame, { passive: true });
   window.addEventListener('resize', requestFrame, { passive: true });
-  reducedMotion.addEventListener('change', requestFrame);
+  reducedMotion.addEventListener('change', () => {
+    lastStep = -1;
+    requestFrame();
+  });
   document.fonts?.ready.then(requestFrame);
 
   updateHeader();
