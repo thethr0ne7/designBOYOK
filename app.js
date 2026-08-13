@@ -1,6 +1,22 @@
 (() => {
   'use strict';
 
+  const refreshStyle = document.createElement('link');
+  refreshStyle.rel = 'stylesheet';
+  refreshStyle.href = './mobile-refresh-v5.css';
+  document.head.appendChild(refreshStyle);
+
+  const carPicture = document.querySelector('.route-diagram picture');
+  const carImage = carPicture?.querySelector('[data-car]');
+  if (carPicture && carImage) {
+    carPicture.querySelectorAll('source').forEach((source) => source.remove());
+    carImage.src = './assets/z4-g29-line.png';
+    carImage.removeAttribute('width');
+    carImage.removeAttribute('height');
+    carImage.loading = 'eager';
+    carImage.decoding = 'async';
+  }
+
   const header = document.querySelector('[data-header]');
   const menuButton = document.querySelector('[data-menu]');
   const mobileNav = document.querySelector('[data-mobile-nav]');
