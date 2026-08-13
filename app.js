@@ -1,6 +1,11 @@
 (() => {
   'use strict';
 
+  const routeFixStyle = document.createElement('link');
+  routeFixStyle.rel = 'stylesheet';
+  routeFixStyle.href = './route-fix-v9.css';
+  document.head.appendChild(routeFixStyle);
+
   const body = document.body;
   const header = document.querySelector('[data-header]');
   const menuButton = document.querySelector('[data-menu]');
@@ -151,7 +156,7 @@
 
     const y = clamp(window.scrollY * 0.035, 0, 54);
     const x = Math.sin(window.scrollY / 680) * 8;
-    roadPattern.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(1.05)`;
+    roadPattern.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(1.08)`;
   };
 
   const updateFrame = () => {
@@ -173,6 +178,8 @@
     requestFrame();
   });
   document.fonts?.ready.then(requestFrame);
+
+  routeFixStyle.addEventListener('load', requestFrame, { once: true });
 
   updateHeader();
   updateRoute();
