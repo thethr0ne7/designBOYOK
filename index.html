@@ -69,7 +69,7 @@
       <div class="shell hero-layout">
         <div class="hero-copy">
           <h1 id="hero-title" data-hero-item>Автошкола КБКС.<br><span>Путь к категории B.</span></h1>
-          <p class="hero-lead" data-hero-item>Программа, порядок обращения и документы — на одной странице. Стоимость и даты набора публикуются только после подтверждения.</p>
+          <p class="hero-lead" data-hero-item>Опубликованный материал категории B, порядок обращения и следующий шаг — на одной понятной странице.</p>
 
           <div class="hero-actions" data-hero-item>
             <a class="button button-primary" href="#program">
@@ -114,7 +114,10 @@
               <li><span>Обучение</span></li>
             </ol>
 
-            <img class="hero-car" data-car src="./assets/z4-g29-hero-v2.png" width="2172" height="724" alt="">
+            <picture>
+              <source type="image/webp" srcset="./assets/z4-g29-hero-v2-1086.webp 1086w, ./assets/z4-g29-hero-v2.webp 2172w" sizes="(max-width: 64rem) calc(100vw - 2.5rem), 58vw">
+              <img class="hero-car" data-car src="./assets/z4-g29-hero-v2.png" width="2172" height="724" alt="">
+            </picture>
           </div>
 
           <p class="sheet-note">Схема показывает порядок действий, а не географический маршрут.</p>
@@ -124,17 +127,17 @@
 
     <section class="section program-section" id="program" aria-labelledby="program-title">
       <div class="shell">
-        <header class="section-heading" data-reveal>
+        <header class="section-heading" data-reveal="heading">
           <h2 id="program-title">Программа категории B.</h2>
-          <p>На странице остаётся только то, что можно связать с опубликованным источником. Остальные сведения отмечены честно.</p>
+          <p>Открывайте исходный материал КБКС и сверяйте актуальные формулировки программы.</p>
         </header>
 
-        <article class="program-band" data-reveal>
+        <article class="program-band" data-reveal="program">
           <div class="program-letter" aria-hidden="true">B</div>
           <div class="program-body">
             <p class="program-status"><span class="status-dot" aria-hidden="true"></span>Опубликованный материал</p>
             <h3>Подготовка водителей категории B</h3>
-            <p>Материал размещён на действующем сайте КБКС. Состав программы и формулировки следует сверять с оригиналом.</p>
+            <p>Описание программы доступно на действующем сайте КБКС.</p>
           </div>
           <a class="program-link" href="https://kb-ks.ru/2024/12/24/%D0%B0%D0%B2%D1%82%D0%BE%D1%88%D0%BA%D0%BE%D0%BB%D0%B0/" target="_blank" rel="noopener noreferrer">
             Открыть материал
@@ -143,7 +146,7 @@
           </a>
         </article>
 
-        <dl class="verification-list" data-reveal>
+        <dl class="verification-list" data-reveal="status">
           <div><dt>Стоимость обучения</dt><dd>Уточняется</dd></div>
           <div><dt>Ближайший набор</dt><dd>Уточняется</dd></div>
         </dl>
@@ -152,25 +155,25 @@
 
     <section class="section route-section" id="route" aria-labelledby="route-title">
       <div class="shell route-layout">
-        <header class="route-heading" data-reveal>
+        <header class="route-heading" data-reveal="heading">
           <h2 id="route-title">От обращения до обучения.</h2>
-          <p>Четыре шага без выдуманного личного кабинета и функций, которых пока нет.</p>
+          <p>Понятная последовательность от первого вопроса до начала занятий.</p>
         </header>
 
-        <ol class="steps">
-          <li data-reveal>
+        <ol class="steps" data-reveal="steps">
+          <li>
             <span class="step-number">01</span>
             <div><h3>Консультация</h3><p>Уточнить программу и задать вопросы ответственному сотруднику.</p></div>
           </li>
-          <li data-reveal>
+          <li>
             <span class="step-number">02</span>
             <div><h3>Условия</h3><p>Получить подтверждённые требования и актуальный порядок обучения.</p></div>
           </li>
-          <li data-reveal>
+          <li>
             <span class="step-number">03</span>
             <div><h3>Документы</h3><p>Подготовить перечень по действующим требованиям КБКС.</p></div>
           </li>
-          <li data-reveal>
+          <li>
             <span class="step-number">04</span>
             <div><h3>Обучение</h3><p>Перейти к занятиям по подтверждённой программе.</p></div>
           </li>
@@ -180,26 +183,26 @@
 
     <section class="section documents-section" id="documents" aria-labelledby="documents-title">
       <div class="shell documents-layout">
-        <header class="documents-heading" data-reveal>
+        <header class="documents-heading" data-reveal="heading">
           <h2 id="documents-title">Источник и статус данных.</h2>
-          <p>Проверяемое отделено от того, что ещё нельзя публиковать как факт.</p>
+          <p>Ссылки на опубликованные материалы и сведения, которые ещё уточняются.</p>
         </header>
 
-        <div class="document-list">
-          <a class="document-row" data-reveal href="https://kb-ks.ru/2024/12/24/%D0%B0%D0%B2%D1%82%D0%BE%D1%88%D0%BA%D0%BE%D0%BB%D0%B0/" target="_blank" rel="noopener noreferrer">
+        <div class="document-list" data-reveal="documents">
+          <a class="document-row" href="https://kb-ks.ru/2024/12/24/%D0%B0%D0%B2%D1%82%D0%BE%D1%88%D0%BA%D0%BE%D0%BB%D0%B0/" target="_blank" rel="noopener noreferrer">
             <span><strong>Материал автошколы категории B</strong><small>Действующий сайт КБКС</small></span>
             <svg aria-hidden="true" viewBox="0 0 18 18" width="18" height="18"><path d="M4 14 14 4M7 4h7v7"/></svg>
             <span class="sr-only">, откроется в новой вкладке</span>
           </a>
-          <div class="document-row" data-reveal>
+          <div class="document-row">
             <span><strong>Лицензия и реквизиты</strong><small>Публикуются после проверки</small></span>
             <span class="document-state">Нужна проверка</span>
           </div>
         </div>
       </div>
 
-      <div class="shell final-action" data-reveal>
-        <p>Цена, даты набора и контакты появятся здесь только после подтверждения.</p>
+      <div class="shell final-action" data-reveal="action">
+        <p>Актуальную стоимость, даты набора и контакты уточняйте у КБКС.</p>
         <a class="button button-primary" href="https://kb-ks.ru/" target="_blank" rel="noopener noreferrer">
           Перейти на сайт КБКС
           <svg aria-hidden="true" viewBox="0 0 18 18" width="18" height="18"><path d="M4 14 14 4M7 4h7v7"/></svg>

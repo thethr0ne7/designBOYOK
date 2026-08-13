@@ -4,6 +4,8 @@
   const header = document.querySelector('[data-header]');
   const menuButton = document.querySelector('[data-menu]');
   const mobileNav = document.querySelector('[data-mobile-nav]');
+  const menuLabel = menuButton?.querySelector('.sr-only');
+  const mobileBreakpoint = window.matchMedia('(max-width: 52.5rem)');
 
   const setMenu = (open) => {
     if (!menuButton || !mobileNav) return;
@@ -11,6 +13,7 @@
     menuButton.setAttribute('aria-expanded', String(open));
     mobileNav.classList.toggle('is-open', open);
     document.body.classList.toggle('menu-open', open);
+    if (menuLabel) menuLabel.textContent = open ? 'Закрыть меню' : 'Открыть меню';
   };
 
   menuButton?.addEventListener('click', () => {
@@ -22,7 +25,14 @@
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') setMenu(false);
+    if (event.key === 'Escape' && menuButton?.getAttribute('aria-expanded') === 'true') {
+      setMenu(false);
+      menuButton.focus();
+    }
+  });
+
+  mobileBreakpoint.addEventListener('change', ({ matches }) => {
+    if (!matches) setMenu(false);
   });
 
   const updateHeader = () => {
@@ -57,13 +67,13 @@
 
     intro
       .from('[data-hero-item]', {
-        autoAlpha: 0,
+        opacity: 0,
         y: 18,
         duration: 0.54,
         stagger: 0.07
       })
       .from('[data-sheet]', {
-        autoAlpha: 0,
+        opacity: 0,
         x: 24,
         duration: 0.62
       }, '-=0.38');
@@ -78,31 +88,63 @@
 
     intro
       .from('[data-car]', {
-        autoAlpha: 0,
+        opacity: 0,
         x: 36,
         duration: 0.72
       }, '-=0.72')
       .from('.route-axis li', {
-        autoAlpha: 0,
+        opacity: 0,
         y: 8,
         duration: 0.28,
         stagger: 0.05
       }, '-=0.38');
 
     if (window.ScrollTrigger) {
-      gsap.utils.toArray('[data-reveal]').forEach((element) => {
-        gsap.from(element, {
-          autoAlpha: 0,
-          y: 18,
+      const reveal = (target, vars) => {
+        gsap.from(target, {
+          opacity: 0,
           duration: 0.54,
           ease: 'power3.out',
+          ...vars,
           scrollTrigger: {
-            trigger: element,
+            trigger: typeof target === 'string' ? target : target,
             start: 'top 88%',
             once: true
           }
         });
+      };
+
+      gsap.utils.toArray('[data-reveal="heading"]').forEach((element) => reveal(element, { y: 18 }));
+      reveal('[data-reveal="program"]', { x: 18 });
+      reveal('[data-reveal="status"]', {});
+
+      gsap.from('[data-reveal="steps"] > li', {
+        opacity: 0,
+        x: 14,
+        duration: 0.44,
+        stagger: 0.06,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '[data-reveal="steps"]',
+          start: 'top 86%',
+          once: true
+        }
       });
+
+      gsap.from('[data-reveal="documents"] > .document-row', {
+        opacity: 0,
+        x: 14,
+        duration: 0.46,
+        stagger: 0.07,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '[data-reveal="documents"]',
+          start: 'top 88%',
+          once: true
+        }
+      });
+
+      reveal('[data-reveal="action"]', { y: 12 });
     }
   });
 

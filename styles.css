@@ -506,6 +506,10 @@ figure {
   margin-top: 4.75rem;
 }
 
+.route-diagram picture {
+  display: block;
+}
+
 .sheet-note {
   padding: var(--space-3) var(--space-5) var(--space-4);
   color: var(--blueprint-muted);
@@ -789,6 +793,9 @@ figure {
 }
 
 .site-footer a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
   font-size: 0.75rem;
 }
 
